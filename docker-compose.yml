@@ -1,0 +1,65 @@
+version: '3'
+
+services:
+  db:
+    container_name: pmdb
+    image: postgres:14
+    restart: always
+    networks:
+      - projectnet
+    ports:
+      - '5433:5432'
+    environment:
+      - POSTGRES_USER=manager
+      - POSTGRES_PASSWORD=project
+      # - POSTGRES_DB: redmine
+      - POSTGRES_MULTIPLE_DATABASES=redmine,openproject
+    volumes:
+      - project-pgdata:/var/lib/postgresql/data
+      - ./db:/docker-entrypoint-initdb.d
+
+  openproject:
+    container_name: openproject
+    image: openproject/community:13
+    restart: always
+    networks:
+      - projectnet
+    ports:
+      - '7777:8080'
+    depends_on: 
+      - db
+    environment:
+      - DATABASE_URL=postgres://manager:project@db:5432/openproject
+      - OPENPROJECT_SECRET_KEY_BASE=openproject
+      # - OPENPROJECT_HOST__NAME=localhost:8080
+      - OPENPROJECT_HTTPS=false
+      - OPENPROJECT_DEFAULT__LANGUAGE=en
+    volumes:
+      - ./openproject/assets:/var/openproject/assets
+      - ./lic/enterprise_token.rb:/app/app/models/enterprise_token.rb
+
+  redmine:
+    container_name: redmine
+    image: redmine:5-bookworm
+    restart: always
+    networks:
+      - projectnet
+    ports:
+      - '7778:3000'
+    depends_on: 
+      - db
+    environment:
+      - DB_ADAPTER=postgresql
+      - REDMINE_DB_POSTGRES=db
+      - REDMINE_DB_PORT=5432
+      - REDMINE_DB_USERNAME=manager
+      - REDMINE_DB_PASSWORD=project 
+      - REDMINE_DB_DATABASE=redmine
+      - REDMINE_SECRET_KEY_BASE=supersecretkey
+
+volumes:
+  project-pgdata:
+
+networks:
+  projectnet:
+    external: true
