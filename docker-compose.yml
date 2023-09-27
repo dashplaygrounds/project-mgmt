@@ -17,6 +17,17 @@ services:
       - project-pgdata:/var/lib/postgresql/data
       - ./db:/docker-entrypoint-initdb.d
 
+  featmap:
+    container_name: featmap
+    image: docker.io/dmarks629/featmap:v1
+    restart: always
+    networks:
+      - projectnet
+    ports:
+      - '5000:5000'
+    volumes:
+      - './conf.json:/opt/featmap/conf.json'
+
   openproject:
     container_name: openproject
     image: openproject/community:13
