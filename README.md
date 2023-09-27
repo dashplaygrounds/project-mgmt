@@ -19,3 +19,7 @@ The default username for Redmine is admin and the default password is admin.
 
 4. db:
 - https://github.com/mrts/docker-postgresql-multiple-databases  
+
+Tutorials
+- https://www.openproject.org/blog/openproject-first-steps-tutorial/
+- https://www.redmine.org/projects/redmine/wiki/Tutorials
