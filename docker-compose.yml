@@ -12,8 +12,7 @@ services:
     environment:
       - POSTGRES_USER=manager
       - POSTGRES_PASSWORD=project
-      # - POSTGRES_DB: redmine
-      - POSTGRES_MULTIPLE_DATABASES=redmine,openproject
+      - POSTGRES_MULTIPLE_DATABASES=featmap,openproject,redmine
     volumes:
       - project-pgdata:/var/lib/postgresql/data
       - ./db:/docker-entrypoint-initdb.d

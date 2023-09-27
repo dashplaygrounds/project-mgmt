@@ -1,6 +1,8 @@
 # project-mgmt
 
-1. redmine - https://hub.docker.com/_/redmine/
+1. amborle/featmap:
+- https://www.featmap.com
+- https://github.com/amborle/featmap#self-hosting
 2. open-project:
 - https://www.openproject.org/docs/installation-and-operations/configuration/database/
 - https://www.openproject.org/docs/installation-and-operations/operation/backing-up/
@@ -15,9 +17,12 @@ By default, an admin user will be created with the login and password set to adm
 # Redmine
 The default username for Redmine is admin and the default password is admin.
 ```
-3. wekan (optional)
+3. redmine:
+- https://hub.docker.com/_/redmine/
 
-4. db:
+4. wekan (optional)
+
+5. db:
 - https://github.com/mrts/docker-postgresql-multiple-databases  
 
 Tutorials
