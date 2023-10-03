@@ -12,10 +12,10 @@
 Note:
 ```
 # Open Project
-By default, an admin user will be created with the login and password set to admin. You will be required to change this password on first login.
+By default, an admin user will be created with the login set to `admin` and password set to `admin`. You will be required to change this password on first login.
 
 # Redmine
-The default username for Redmine is admin and the default password is admin.
+The default username for Redmine is `admin` and the default password is `admin`.
 ```
 3. redmine:
 - https://hub.docker.com/_/redmine/
