@@ -1,3 +1,6 @@
+sudo mkdir -p /data/project/project-pgdata
+sudo chown -R $USER:$USER /data/project/project-pgdata
+
 docker network create projectnet
 docker compose up -d
 watch docker ps -a

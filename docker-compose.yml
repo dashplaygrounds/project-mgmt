@@ -69,7 +69,11 @@ services:
 
 volumes:
   project-pgdata:
-
+    driver: local
+    driver_opts:
+      type: none
+      device: "/data/project/project-pgdata"
+      o: bind
 networks:
   projectnet:
     external: true
